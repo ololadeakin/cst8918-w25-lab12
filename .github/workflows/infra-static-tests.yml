@@ -1,0 +1,17 @@
+name: Static Test (Dummy)
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  dummy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Run echo check
+        run: echo "This is a test check."
