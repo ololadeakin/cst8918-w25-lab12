@@ -1,4 +1,6 @@
 terraform {
+  required_version = ">= 1.3.0"
+
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
@@ -18,9 +20,4 @@ terraform {
 provider "azurerm" {
   features {}
   use_oidc = true
-}
-
-resource "azurerm_resource_group" "app_rg" {
-  name     = "akin0098-a12-rg"
-  location = "Canada Central"
 }

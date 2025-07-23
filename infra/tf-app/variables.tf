@@ -1,0 +1,1 @@
+// variables.tf - placeholder for input variables
