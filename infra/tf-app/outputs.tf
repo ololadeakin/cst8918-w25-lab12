@@ -1,1 +1,1 @@
-// outputs.tf - placeholder for outputs
+# outputs.tf - no outputs yet

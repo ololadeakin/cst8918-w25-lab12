@@ -1,1 +1,1 @@
-// variables.tf - placeholder for input variables
+# variables.tf - no variables yet
