@@ -40,6 +40,12 @@ jobs:
       with:
         terraform_wrapper: false
 
+    - name: Debug: Validate ARM_ACCESS_KEY
+      run: |
+        echo -n "$ARM_ACCESS_KEY" | base64 --decode >/dev/null \
+          && echo "✅ ARM_ACCESS_KEY is valid Base64" \
+          || (echo "❌ ARM_ACCESS_KEY is NOT valid Base64"; exit 1)
+
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: terraform init
