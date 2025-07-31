@@ -17,24 +17,52 @@ terraform {
   }
 }
 
-# resource "azurerm_virtual_network" "app_vnet" {
-#   name                = "app-vnet"
-#   address_space       = ["10.0.0.0/16"]
-#   location            = azurerm_resource_group.app_rg.location
-#   resource_group_name = azurerm_resource_group.app_rg.name
+resource "azurerm_virtual_network" "app_vnet" {
+  name                = "app-vnet"
+  address_space       = ["10.0.0.0/16"]
+  location            = azurerm_resource_group.app_rg.location
+  resource_group_name = azurerm_resource_group.app_rg.name
 
-#   tags = {
-#     environment = "production"
-#     project     = "cst8918-lab12"
-#   }
-# }
+  tags = {
+    environment = "production"
+    project     = "cst8918-lab12"
+  }
+}
 
-# resource "azurerm_subnet" "app_subnet" {
-#   name                 = "app-subnet"
-#   resource_group_name  = azurerm_resource_group.app_rg.name
-#   virtual_network_name = azurerm_virtual_network.app_vnet.name
-#   address_prefixes     = ["10.0.1.0/24"]
-# }
+resource "azurerm_subnet" "app_subnet" {
+  name                 = "app-subnet"
+  resource_group_name  = azurerm_resource_group.app_rg.name
+  virtual_network_name = azurerm_virtual_network.app_vnet.name
+  address_prefixes     = ["10.0.1.0/24"]
+}
+
+resource "azurerm_network_security_group" "app_nsg" {
+  name                = "app-nsg"
+  location            = azurerm_resource_group.app_rg.location
+  resource_group_name = azurerm_resource_group.app_rg.name
+
+  security_rule {
+    name                       = "Allow-SSH"
+    priority                   = 1001
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "22"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  tags = {
+    environment = "production"
+    project     = "cst8918-lab12"
+  }
+}
+
+resource "azurerm_subnet_network_security_group_association" "app_subnet_nsg_assoc" {
+  subnet_id                 = azurerm_subnet.app_subnet.id
+  network_security_group_id = azurerm_network_security_group.app_nsg.id
+}
 
 provider "azurerm" {
   features {}
