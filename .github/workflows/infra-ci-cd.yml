@@ -90,7 +90,7 @@ jobs:
         fi
 
     - name: List files after plan
-      run: ls -l ./infra/tf-app
+      run: ls -l 
 
     - name: Publish Terraform Plan
       uses: actions/upload-artifact@v4
