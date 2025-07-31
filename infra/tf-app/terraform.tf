@@ -17,8 +17,8 @@ terraform {
   }
 }
 
-resource "azurerm_virtual_network" "app_vnet_primaryyy" {
-  name                = "app-vnet-primaryyy"
+resource "azurerm_virtual_network" "app_vnet_primaryyyy" {
+  name                = "app-vnet-primaryyyy"
   address_space       = ["10.4.0.0/16"]
   location            = azurerm_resource_group.app_rg.location
   resource_group_name = azurerm_resource_group.app_rg.name
@@ -30,10 +30,10 @@ resource "azurerm_virtual_network" "app_vnet_primaryyy" {
   }
 }
 
-resource "azurerm_subnet" "app_subnet_primaryyy_vnet" {
-  name                 = "app-subnet-primaryyy"
+resource "azurerm_subnet" "app_subnet_primaryyyy_vnet" {
+  name                 = "app-subnet-primaryyyy"
   resource_group_name  = azurerm_resource_group.app_rg.name
-  virtual_network_name = azurerm_virtual_network.app_vnet_primaryyy.name
+  virtual_network_name = azurerm_virtual_network.app_vnet_primaryyyy.name
   address_prefixes     = ["10.4.1.0/24"]
 }
 
