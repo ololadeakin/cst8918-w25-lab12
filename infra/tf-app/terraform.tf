@@ -17,63 +17,24 @@ terraform {
   }
 }
 
-resource "azurerm_virtual_network" "app_vnet" {
-  name                = "app-vnet"
-  address_space       = ["10.0.0.0/16"]
+resource "azurerm_virtual_network" "app_vnet_primary" {
+  name                = "app-vnet-primary"
+  address_space       = ["10.4.0.0/16"]
   location            = azurerm_resource_group.app_rg.location
   resource_group_name = azurerm_resource_group.app_rg.name
 
   tags = {
     environment = "production"
     project     = "cst8918-lab12"
+    role        = "primary-network"
   }
 }
 
-resource "azurerm_subnet" "app_subnet" {
-  name                 = "app-subnet"
+resource "azurerm_subnet" "app_subnet_primary_vnet" {
+  name                 = "app-subnet-primary"
   resource_group_name  = azurerm_resource_group.app_rg.name
-  virtual_network_name = azurerm_virtual_network.app_vnet.name
-  address_prefixes     = ["10.0.1.0/24"]
-}
-
-resource "azurerm_virtual_network" "app_vnet_secondary" {
-  name                = "app-vnet-secondary"
-  address_space       = ["10.2.0.0/16"]
-  location            = azurerm_resource_group.app_rg.location
-  resource_group_name = azurerm_resource_group.app_rg.name
-
-  tags = {
-    environment = "production"
-    project     = "cst8918-lab12"
-    role        = "secondary-network"
-  }
-}
-
-resource "azurerm_subnet" "app_subnet_secondary_vnet" {
-  name                 = "app-subnet-secondary"
-  resource_group_name  = azurerm_resource_group.app_rg.name
-  virtual_network_name = azurerm_virtual_network.app_vnet_secondary.name
-  address_prefixes     = ["10.2.1.0/24"]
-}
-
-resource "azurerm_virtual_network" "app_vnet_tertiary" {
-  name                = "app-vnet-tertiary"
-  address_space       = ["10.3.0.0/16"]
-  location            = azurerm_resource_group.app_rg.location
-  resource_group_name = azurerm_resource_group.app_rg.name
-
-  tags = {
-    environment = "production"
-    project     = "cst8918-lab12"
-    role        = "secondary-network"
-  }
-}
-
-resource "azurerm_subnet" "app_subnet_tertary_vnet" {
-  name                 = "app-subnet-tertiary"
-  resource_group_name  = azurerm_resource_group.app_rg.name
-  virtual_network_name = azurerm_virtual_network.app_vnet_tertiary.name
-  address_prefixes     = ["10.3.1.0/24"]
+  virtual_network_name = azurerm_virtual_network.app_vnet_primary.name
+  address_prefixes     = ["10.4.1.0/24"]
 }
 
 provider "azurerm" {
