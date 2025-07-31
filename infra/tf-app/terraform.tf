@@ -56,6 +56,26 @@ resource "azurerm_subnet" "app_subnet_secondary_vnet" {
   address_prefixes     = ["10.2.1.0/24"]
 }
 
+resource "azurerm_virtual_network" "app_vnet_tertiary" {
+  name                = "app-vnet-tertiary"
+  address_space       = ["10.3.0.0/16"]
+  location            = azurerm_resource_group.app_rg.location
+  resource_group_name = azurerm_resource_group.app_rg.name
+
+  tags = {
+    environment = "production"
+    project     = "cst8918-lab12"
+    role        = "secondary-network"
+  }
+}
+
+resource "azurerm_subnet" "app_subnet_tertary_vnet" {
+  name                 = "app-subnet-tertiary"
+  resource_group_name  = azurerm_resource_group.app_rg.name
+  virtual_network_name = azurerm_virtual_network.app_vnet_tertiary.name
+  address_prefixes     = ["10.3.1.0/24"]
+}
+
 provider "azurerm" {
   features {}
   use_oidc = true
