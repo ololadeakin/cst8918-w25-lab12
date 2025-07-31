@@ -1,4 +1,6 @@
 terraform {
+  required_version = ">= 1.3.0"
+
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
@@ -11,12 +13,11 @@ terraform {
     storage_account_name = "akin0098githubactionsss"
     container_name       = "tfstate"
     key                  = "prod.app.tfstate"
+    use_oidc             = true
   }
 }
+
 provider "azurerm" {
   features {}
-}
-resource "azurerm_resource_group" "app_rg" {
-  name     = "akin0098-a12-rg"
-  location = "Canada Central"
+  use_oidc = true
 }
