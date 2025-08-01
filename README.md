@@ -5,12 +5,6 @@
 - **Jonathan Martins** | [@dejalltime](https://github.com/dejalltime) | mart1449@algonquinlive.com
 - **Iman Elsakaan** | [@ImanelSakaan](https://github.com/ImanelSakaan) | elsa0105@algonquinlive.com
 
-
-
-# CST8918 – Lab: CI/CD with GitHub Actions for Terraform AKS Cluster Deployment
-
-This lab demonstrates the use of **Infrastructure as Code (IaC)** with **Terraform**, integrating **GitHub Actions** to automate provisioning of an **AKS (Azure Kubernetes Service)** cluster. It also includes enforcing code quality using pre-commit hooks (Husky) and pull request workflows.
-
 ---
 
 ## ✅ Lab Objectives
