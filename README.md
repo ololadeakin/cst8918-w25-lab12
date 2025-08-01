@@ -46,10 +46,12 @@ This lab demonstrates the use of **Infrastructure as Code (IaC)** with **Terrafo
 ## 📷 Screenshots
 
 ✅ **Pull Request – Terraform Plan Success**  
-![Terraform Plan Success](./screenshots/terraform-plan-success.png)
+![Terraform Plan Success](./screenshots/pr-checks.png)
 
 ✅ **Pull Request – GitHub Actions Apply Success**  
-![Terraform Apply Success](./screenshots/terraform-apply-success.png)
+![Terraform Apply Success](./screenshots/pr-tf-plan1.png)
+![Terraform Apply Success](./screenshots/pr-tf-plan2.png)
+
 
 ---
 
@@ -91,7 +93,4 @@ After testing, all resources were destroyed using:
 terraform destroy
 ````
 
-```
 
-Let me know if you want me to turn this into a downloadable file or add GitHub badge integrations (like CI status).
-```
