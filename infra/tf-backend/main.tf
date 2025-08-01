@@ -42,3 +42,11 @@ output "arm_access_key" {
   value     = azurerm_storage_account.sa.primary_access_key
   sensitive = true
 }
+
+output "rg_name" {
+  value = azurerm_resource_group.rg.name
+}
+
+output "rg_location" {
+  value = azurerm_resource_group.rg.location
+}
